@@ -1,5 +1,7 @@
+using API;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System.Text.Json.Serialization;
+using TestLibrary;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
@@ -10,6 +12,8 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddSingleton<IHelloWorldService, HelloWinCanService>();
 
 var app = builder.Build();
 
@@ -36,6 +40,8 @@ todosApi.MapGet("/{id}", Results<Ok<Todo>, NotFound> (int id) =>
         ? TypedResults.Ok(todo)
         : TypedResults.NotFound())
     .WithName("GetTodoById");
+
+//app.MapHelloWorldApi();
 
 app.Run();
 
