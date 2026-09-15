@@ -13,7 +13,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddSingleton<IHelloWorldService, HelloWinCanService>();
+builder.Services.AddSingleton<IHelloWorldService, HelloWorldService>();
 
 var app = builder.Build();
 
